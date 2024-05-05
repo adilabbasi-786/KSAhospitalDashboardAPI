@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hotel_names",
+  "info": {
+    "singularName": "hotel-name",
+    "pluralName": "hotel-names",
+    "displayName": "Hotel-name",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "img": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "location": {
+      "type": "string"
+    },
+    "managerName": {
+      "type": "string"
+    },
+    "managerEmail": {
+      "type": "email"
+    },
+    "managerPassword": {
+      "type": "string"
+    },
+    "hotelRent": {
+      "type": "integer"
+    },
+    "kafalat": {
+      "type": "integer"
+    },
+    "employees_datum": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::employes-data.employes-data",
+      "mappedBy": "hotel_name"
+    }
+  }
+}

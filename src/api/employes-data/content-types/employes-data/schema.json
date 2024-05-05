@@ -1,0 +1,77 @@
+{
+  "kind": "collectionType",
+  "collectionName": "employee_data",
+  "info": {
+    "singularName": "employes-data",
+    "pluralName": "employee-data",
+    "displayName": "employees-Data",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "EmployeeName": {
+      "type": "string"
+    },
+    "PassportNumber": {
+      "type": "string"
+    },
+    "passportExpiry": {
+      "type": "date"
+    },
+    "passportImage": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "iqamaNumber": {
+      "type": "string"
+    },
+    "iqamaPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "iqamaExpiry": {
+      "type": "date"
+    },
+    "employeePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "hotel_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "employees_datum"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "active",
+        "inactive"
+      ]
+    }
+  }
+}
