@@ -43,12 +43,6 @@
     },
     "kafalat": {
       "type": "integer"
-    },
-    "employees_datum": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::employes-data.employes-data",
-      "mappedBy": "hotel_name"
     }
   }
 }

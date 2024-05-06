@@ -23,7 +23,7 @@
     },
     "passportImage": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "allowedTypes": [
         "images",
@@ -63,8 +63,7 @@
     "hotel_name": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::hotel-name.hotel-name",
-      "inversedBy": "employees_datum"
+      "target": "api::hotel-name.hotel-name"
     },
     "status": {
       "type": "enumeration",

@@ -362,6 +362,88 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
+  collectionName: 'employee_data';
+  info: {
+    singularName: 'employes-data';
+    pluralName: 'employee-data';
+    displayName: 'employees-Data';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    EmployeeName: Attribute.String;
+    PassportNumber: Attribute.String;
+    passportExpiry: Attribute.Date;
+    passportImage: Attribute.Media;
+    iqamaNumber: Attribute.String;
+    iqamaPicture: Attribute.Media;
+    iqamaExpiry: Attribute.Date;
+    employeePicture: Attribute.Media;
+    hotel_name: Attribute.Relation<
+      'api::employes-data.employes-data',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    status: Attribute.Enumeration<['active', 'inactive']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::employes-data.employes-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::employes-data.employes-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHotelNameHotelName extends Schema.CollectionType {
+  collectionName: 'hotel_names';
+  info: {
+    singularName: 'hotel-name';
+    pluralName: 'hotel-names';
+    displayName: 'Hotel-name';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    img: Attribute.Media;
+    location: Attribute.String;
+    managerName: Attribute.String;
+    managerEmail: Attribute.Email;
+    managerPassword: Attribute.String;
+    hotelRent: Attribute.Integer;
+    kafalat: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -788,93 +870,6 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
-export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
-  collectionName: 'employee_data';
-  info: {
-    singularName: 'employes-data';
-    pluralName: 'employee-data';
-    displayName: 'employees-Data';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    EmployeeName: Attribute.String;
-    PassportNumber: Attribute.String;
-    passportExpiry: Attribute.Date;
-    passportImage: Attribute.Media;
-    iqamaNumber: Attribute.String;
-    iqamaPicture: Attribute.Media;
-    iqamaExpiry: Attribute.Date;
-    employeePicture: Attribute.Media;
-    hotel_name: Attribute.Relation<
-      'api::employes-data.employes-data',
-      'oneToOne',
-      'api::hotel-name.hotel-name'
-    >;
-    status: Attribute.Enumeration<['active', 'inactive']>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::employes-data.employes-data',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::employes-data.employes-data',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHotelNameHotelName extends Schema.CollectionType {
-  collectionName: 'hotel_names';
-  info: {
-    singularName: 'hotel-name';
-    pluralName: 'hotel-names';
-    displayName: 'Hotel-name';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    img: Attribute.Media;
-    location: Attribute.String;
-    managerName: Attribute.String;
-    managerEmail: Attribute.Email;
-    managerPassword: Attribute.String;
-    hotelRent: Attribute.Integer;
-    kafalat: Attribute.Integer;
-    employees_datum: Attribute.Relation<
-      'api::hotel-name.hotel-name',
-      'oneToOne',
-      'api::employes-data.employes-data'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::hotel-name.hotel-name',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::hotel-name.hotel-name',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -885,6 +880,8 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::employes-data.employes-data': ApiEmployesDataEmployesData;
+      'api::hotel-name.hotel-name': ApiHotelNameHotelName;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -893,8 +890,6 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
-      'api::employes-data.employes-data': ApiEmployesDataEmployesData;
-      'api::hotel-name.hotel-name': ApiHotelNameHotelName;
     }
   }
 }

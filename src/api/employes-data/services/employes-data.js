@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 /**
  * employes-data service
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreService } = require("@strapi/strapi").factories;
 
-module.exports = createCoreService('api::employes-data.employes-data');
+module.exports = createCoreService("api::employes-data.employes-data");
