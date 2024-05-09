@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_registers",
+  "info": {
+    "singularName": "daily-register",
+    "pluralName": "daily-registers",
+    "displayName": "Daily-Register",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "itemName": {
+      "type": "string"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "kitchen",
+        "others"
+      ]
+    },
+    "quantity": {
+      "type": "decimal"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "hotel_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hotel-name.hotel-name"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

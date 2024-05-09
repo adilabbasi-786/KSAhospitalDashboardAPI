@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_sales",
+  "info": {
+    "singularName": "daily-sale",
+    "pluralName": "daily-sales",
+    "displayName": "daily-sale",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sale": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "date"
+    },
+    "hotel_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "daily_sale"
+    }
+  }
+}

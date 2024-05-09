@@ -43,6 +43,12 @@
     },
     "kafalat": {
       "type": "integer"
+    },
+    "daily_sale": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::daily-sale.daily-sale",
+      "inversedBy": "hotel_name"
     }
   }
 }

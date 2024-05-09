@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "advance_salaries",
+  "info": {
+    "singularName": "advance-salary",
+    "pluralName": "advance-salaries",
+    "displayName": "Advance_salary",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "amount": {
+      "type": "integer"
+    },
+    "employees_datum": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::employes-data.employes-data"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}

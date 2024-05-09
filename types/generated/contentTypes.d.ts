@@ -362,88 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
-  collectionName: 'employee_data';
-  info: {
-    singularName: 'employes-data';
-    pluralName: 'employee-data';
-    displayName: 'employees-Data';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    EmployeeName: Attribute.String;
-    PassportNumber: Attribute.String;
-    passportExpiry: Attribute.Date;
-    passportImage: Attribute.Media;
-    iqamaNumber: Attribute.String;
-    iqamaPicture: Attribute.Media;
-    iqamaExpiry: Attribute.Date;
-    employeePicture: Attribute.Media;
-    hotel_name: Attribute.Relation<
-      'api::employes-data.employes-data',
-      'oneToOne',
-      'api::hotel-name.hotel-name'
-    >;
-    status: Attribute.Enumeration<['active', 'inactive']>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::employes-data.employes-data',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::employes-data.employes-data',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiHotelNameHotelName extends Schema.CollectionType {
-  collectionName: 'hotel_names';
-  info: {
-    singularName: 'hotel-name';
-    pluralName: 'hotel-names';
-    displayName: 'Hotel-name';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    img: Attribute.Media;
-    location: Attribute.String;
-    managerName: Attribute.String;
-    managerEmail: Attribute.Email;
-    managerPassword: Attribute.String;
-    hotelRent: Attribute.Integer;
-    kafalat: Attribute.Integer;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::hotel-name.hotel-name',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::hotel-name.hotel-name',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -870,6 +788,250 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiAdvanceSalaryAdvanceSalary extends Schema.CollectionType {
+  collectionName: 'advance_salaries';
+  info: {
+    singularName: 'advance-salary';
+    pluralName: 'advance-salaries';
+    displayName: 'Advance_salary';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amount: Attribute.Integer;
+    employees_datum: Attribute.Relation<
+      'api::advance-salary.advance-salary',
+      'oneToOne',
+      'api::employes-data.employes-data'
+    >;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::advance-salary.advance-salary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::advance-salary.advance-salary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyRegisterDailyRegister extends Schema.CollectionType {
+  collectionName: 'daily_registers';
+  info: {
+    singularName: 'daily-register';
+    pluralName: 'daily-registers';
+    displayName: 'Daily-Register';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    itemName: Attribute.String;
+    category: Attribute.Enumeration<['kitchen', 'others']>;
+    quantity: Attribute.Decimal;
+    price: Attribute.Integer;
+    hotel_name: Attribute.Relation<
+      'api::daily-register.daily-register',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    date: Attribute.Date;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-register.daily-register',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-register.daily-register',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailySaleDailySale extends Schema.CollectionType {
+  collectionName: 'daily_sales';
+  info: {
+    singularName: 'daily-sale';
+    pluralName: 'daily-sales';
+    displayName: 'daily-sale';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    sale: Attribute.Integer;
+    date: Attribute.Date;
+    hotel_name: Attribute.Relation<
+      'api::daily-sale.daily-sale',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-sale.daily-sale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-sale.daily-sale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
+  collectionName: 'employee_data';
+  info: {
+    singularName: 'employes-data';
+    pluralName: 'employee-data';
+    displayName: 'employees-Data';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    EmployeeName: Attribute.String;
+    PassportNumber: Attribute.String;
+    passportExpiry: Attribute.Date;
+    passportImage: Attribute.Media;
+    iqamaNumber: Attribute.String;
+    iqamaPicture: Attribute.Media;
+    iqamaExpiry: Attribute.Date;
+    employeePicture: Attribute.Media;
+    hotel_name: Attribute.Relation<
+      'api::employes-data.employes-data',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    status: Attribute.Enumeration<['active', 'inactive']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::employes-data.employes-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::employes-data.employes-data',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiHotelNameHotelName extends Schema.CollectionType {
+  collectionName: 'hotel_names';
+  info: {
+    singularName: 'hotel-name';
+    pluralName: 'hotel-names';
+    displayName: 'Hotel-name';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    img: Attribute.Media;
+    location: Attribute.String;
+    managerName: Attribute.String;
+    managerEmail: Attribute.Email;
+    managerPassword: Attribute.String;
+    hotelRent: Attribute.Integer;
+    kafalat: Attribute.Integer;
+    daily_sale: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToOne',
+      'api::daily-sale.daily-sale'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSalarySalary extends Schema.CollectionType {
+  collectionName: 'salaries';
+  info: {
+    singularName: 'salary';
+    pluralName: 'salaries';
+    displayName: 'salary';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    basic_salary: Attribute.Integer;
+    employees_datum: Attribute.Relation<
+      'api::salary.salary',
+      'oneToOne',
+      'api::employes-data.employes-data'
+    >;
+    deduction: Attribute.Integer;
+    date: Attribute.Date;
+    advance_salary: Attribute.Relation<
+      'api::salary.salary',
+      'oneToOne',
+      'api::advance-salary.advance-salary'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::salary.salary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::salary.salary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -880,8 +1042,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::employes-data.employes-data': ApiEmployesDataEmployesData;
-      'api::hotel-name.hotel-name': ApiHotelNameHotelName;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -890,6 +1050,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::advance-salary.advance-salary': ApiAdvanceSalaryAdvanceSalary;
+      'api::daily-register.daily-register': ApiDailyRegisterDailyRegister;
+      'api::daily-sale.daily-sale': ApiDailySaleDailySale;
+      'api::employes-data.employes-data': ApiEmployesDataEmployesData;
+      'api::hotel-name.hotel-name': ApiHotelNameHotelName;
+      'api::salary.salary': ApiSalarySalary;
     }
   }
 }
