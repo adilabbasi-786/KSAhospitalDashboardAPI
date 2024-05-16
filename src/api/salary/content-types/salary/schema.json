@@ -20,16 +20,23 @@
       "relation": "oneToOne",
       "target": "api::employes-data.employes-data"
     },
-    "deduction": {
-      "type": "integer"
-    },
     "date": {
       "type": "date"
     },
-    "advance_salary": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::advance-salary.advance-salary"
+    "month": {
+      "type": "integer"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "monthly salary",
+        "advance",
+        "fine",
+        "deduction"
+      ]
+    },
+    "amount": {
+      "type": "integer"
     }
   }
 }

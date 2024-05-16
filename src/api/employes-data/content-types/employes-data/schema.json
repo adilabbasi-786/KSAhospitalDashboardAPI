@@ -71,6 +71,9 @@
         "active",
         "inactive"
       ]
+    },
+    "salary": {
+      "type": "integer"
     }
   }
 }

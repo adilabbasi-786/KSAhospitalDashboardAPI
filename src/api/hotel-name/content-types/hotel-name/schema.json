@@ -49,6 +49,12 @@
       "relation": "oneToOne",
       "target": "api::daily-sale.daily-sale",
       "inversedBy": "hotel_name"
+    },
+    "partners": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::partner.partner",
+      "mappedBy": "hotel_names"
     }
   }
 }

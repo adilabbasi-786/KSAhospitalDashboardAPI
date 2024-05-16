@@ -825,6 +825,42 @@ export interface ApiAdvanceSalaryAdvanceSalary extends Schema.CollectionType {
   };
 }
 
+export interface ApiCharityCharity extends Schema.CollectionType {
+  collectionName: 'charities';
+  info: {
+    singularName: 'charity';
+    pluralName: 'charities';
+    displayName: 'charity';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    dailycharity: Attribute.Integer;
+    date: Attribute.Date;
+    hotel_name: Attribute.Relation<
+      'api::charity.charity',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::charity.charity',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::charity.charity',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDailyRegisterDailyRegister extends Schema.CollectionType {
   collectionName: 'daily_registers';
   info: {
@@ -902,6 +938,38 @@ export interface ApiDailySaleDailySale extends Schema.CollectionType {
   };
 }
 
+export interface ApiDriverDriver extends Schema.CollectionType {
+  collectionName: 'drivers';
+  info: {
+    singularName: 'driver';
+    pluralName: 'drivers';
+    displayName: 'driver';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    liscenceNumber: Attribute.String;
+    salary: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::driver.driver',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::driver.driver',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
   collectionName: 'employee_data';
   info: {
@@ -928,6 +996,7 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
       'api::hotel-name.hotel-name'
     >;
     status: Attribute.Enumeration<['active', 'inactive']>;
+    salary: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -971,6 +1040,11 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
       'oneToOne',
       'api::daily-sale.daily-sale'
     >;
+    partners: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'manyToMany',
+      'api::partner.partner'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -985,6 +1059,74 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
       'oneToOne',
       'admin::user'
     > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPartnerPartner extends Schema.CollectionType {
+  collectionName: 'partners';
+  info: {
+    singularName: 'partner';
+    pluralName: 'partners';
+    displayName: 'partner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    ratio: Attribute.String;
+    hotel_names: Attribute.Relation<
+      'api::partner.partner',
+      'manyToMany',
+      'api::hotel-name.hotel-name'
+    >;
+    profit_amount: Attribute.BigInteger;
+    month: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::partner.partner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRentRent extends Schema.CollectionType {
+  collectionName: 'rents';
+  info: {
+    singularName: 'rent';
+    pluralName: 'rents';
+    displayName: 'rent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    hotelRent: Attribute.Integer;
+    kafalat: Attribute.Integer;
+    month: Attribute.Integer;
+    hotel_name: Attribute.Relation<
+      'api::rent.rent',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::rent.rent', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::rent.rent', 'oneToOne', 'admin::user'> &
       Attribute.Private;
   };
 }
@@ -1007,13 +1149,12 @@ export interface ApiSalarySalary extends Schema.CollectionType {
       'oneToOne',
       'api::employes-data.employes-data'
     >;
-    deduction: Attribute.Integer;
     date: Attribute.Date;
-    advance_salary: Attribute.Relation<
-      'api::salary.salary',
-      'oneToOne',
-      'api::advance-salary.advance-salary'
+    month: Attribute.Integer;
+    type: Attribute.Enumeration<
+      ['monthly salary', 'advance', 'fine', 'deduction']
     >;
+    amount: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1051,10 +1192,14 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
       'api::advance-salary.advance-salary': ApiAdvanceSalaryAdvanceSalary;
+      'api::charity.charity': ApiCharityCharity;
       'api::daily-register.daily-register': ApiDailyRegisterDailyRegister;
       'api::daily-sale.daily-sale': ApiDailySaleDailySale;
+      'api::driver.driver': ApiDriverDriver;
       'api::employes-data.employes-data': ApiEmployesDataEmployesData;
       'api::hotel-name.hotel-name': ApiHotelNameHotelName;
+      'api::partner.partner': ApiPartnerPartner;
+      'api::rent.rent': ApiRentRent;
       'api::salary.salary': ApiSalarySalary;
     }
   }

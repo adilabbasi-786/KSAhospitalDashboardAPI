@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rents",
+  "info": {
+    "singularName": "rent",
+    "pluralName": "rents",
+    "displayName": "rent"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "hotelRent": {
+      "type": "integer"
+    },
+    "kafalat": {
+      "type": "integer"
+    },
+    "month": {
+      "type": "integer"
+    },
+    "hotel_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hotel-name.hotel-name"
+    }
+  }
+}

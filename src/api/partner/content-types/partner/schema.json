@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "partners",
+  "info": {
+    "singularName": "partner",
+    "pluralName": "partners",
+    "displayName": "partner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ratio": {
+      "type": "string"
+    },
+    "hotel_names": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "partners"
+    },
+    "profit_amount": {
+      "type": "biginteger"
+    },
+    "month": {
+      "type": "integer"
+    }
+  }
+}
