@@ -6,8 +6,6 @@
 
 const { createCoreController } = require("@strapi/strapi").factories;
 
-// module.exports = createCoreController("api::hotel-name.hotel-name");
-
 module.exports = createCoreController(
   "api::hotel-name.hotel-name",
   ({ strapi }) => ({
@@ -19,10 +17,12 @@ module.exports = createCoreController(
         }
       );
       const roleID = roles[0].id;
-      // find a userid then assifn
-      console.log("strapi", roles);
+
+      // Extract userId from request body
       const { userId } = ctx.request.body;
-      const user = await strapi.entityService.update(
+
+      // Assign manager role to the user
+      await strapi.entityService.update(
         "plugin::users-permissions.user",
         userId,
         {
@@ -31,8 +31,11 @@ module.exports = createCoreController(
           },
         }
       );
-      console.log("userId", userId);
 
+      // Set the userId in the hotel data
+      ctx.request.body.data.manager = userId;
+
+      // Create the hotel entry with the manager ID
       const response = await super.create(ctx);
       return response;
     },

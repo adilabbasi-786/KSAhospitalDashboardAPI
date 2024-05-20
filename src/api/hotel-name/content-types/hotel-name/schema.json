@@ -55,6 +55,18 @@
       "relation": "manyToMany",
       "target": "api::partner.partner",
       "mappedBy": "hotel_names"
+    },
+    "manager": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "hotel_name"
+    },
+    "employees_data": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::employes-data.employes-data",
+      "mappedBy": "hotel_name"
     }
   }
 }

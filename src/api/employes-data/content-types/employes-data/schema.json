@@ -62,8 +62,9 @@
     },
     "hotel_name": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::hotel-name.hotel-name"
+      "relation": "manyToOne",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "employees_data"
     },
     "status": {
       "type": "enumeration",
