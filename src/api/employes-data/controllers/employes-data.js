@@ -32,6 +32,7 @@ module.exports = createCoreController(
             filters: {
               hotel_name: hotelId,
             },
+            populate: "*",
           }
         );
 
@@ -53,7 +54,9 @@ module.exports = createCoreController(
             },
           }
         );
+
         const hotelId = hotel[0].id;
+
         ctx.request.body.data.hotel_name = hotelId;
         const response = await super.create(ctx);
         return response;
