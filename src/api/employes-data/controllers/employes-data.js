@@ -10,8 +10,7 @@ module.exports = createCoreController(
   "api::employes-data.employes-data",
   ({ strapi }) => ({
     async find(ctx) {
-      console.log("admin", ctx.state);
-      if (ctx.state.user.role.name === "admin") {
+      if (ctx.state.user?.role.name === "admin") {
         const { data, meta } = await super.find(ctx);
         return { data, meta };
       } else if (ctx.state.user.role.name === "manager") {
