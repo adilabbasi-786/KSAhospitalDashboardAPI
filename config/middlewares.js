@@ -8,7 +8,7 @@ module.exports = [
       enabled: true,
       headers: "*", // You can specify which headers are allowed if needed
       origin: [
-        "https://your-frontend-domain.vercel.app",
+        "https://ksa-hotel-admindasboard.vercel.app/",
         "http://localhost:3000",
       ], // Add your Vercel frontend domain here
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
