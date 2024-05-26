@@ -67,6 +67,15 @@
       "relation": "oneToMany",
       "target": "api::employes-data.employes-data",
       "mappedBy": "hotel_name"
+    },
+    "managerPhoneNumber": {
+      "type": "string"
+    },
+    "kafeelName": {
+      "type": "string"
+    },
+    "KafeelPhoneNumber": {
+      "type": "string"
     }
   }
 }

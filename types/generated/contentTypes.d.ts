@@ -1059,6 +1059,9 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
       'oneToMany',
       'api::employes-data.employes-data'
     >;
+    managerPhoneNumber: Attribute.String;
+    kafeelName: Attribute.String;
+    KafeelPhoneNumber: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

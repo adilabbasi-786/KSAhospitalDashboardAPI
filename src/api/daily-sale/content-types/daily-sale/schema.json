@@ -22,7 +22,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::hotel-name.hotel-name",
-      "inversedBy": "daily_sale"
+      "mappedBy": "daily_sale"
     }
   }
 }
