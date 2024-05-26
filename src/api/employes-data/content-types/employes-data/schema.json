@@ -75,6 +75,9 @@
     },
     "salary": {
       "type": "integer"
+    },
+    "EmployeePhoneNumber": {
+      "type": "string"
     }
   }
 }

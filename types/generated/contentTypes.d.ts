@@ -1001,6 +1001,7 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     >;
     status: Attribute.Enumeration<['active', 'inactive']>;
     salary: Attribute.Integer;
+    EmployeePhoneNumber: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
