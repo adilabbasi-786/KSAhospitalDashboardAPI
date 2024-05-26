@@ -924,6 +924,8 @@ export interface ApiDailySaleDailySale extends Schema.CollectionType {
       'oneToOne',
       'api::hotel-name.hotel-name'
     >;
+    cashSale: Attribute.Integer;
+    creditSale: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

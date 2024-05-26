@@ -23,6 +23,12 @@
       "relation": "oneToOne",
       "target": "api::hotel-name.hotel-name",
       "mappedBy": "daily_sale"
+    },
+    "cashSale": {
+      "type": "integer"
+    },
+    "creditSale": {
+      "type": "integer"
     }
   }
 }
