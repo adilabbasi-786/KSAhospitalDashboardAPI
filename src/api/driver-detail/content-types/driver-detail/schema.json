@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "driver_details",
+  "info": {
+    "singularName": "driver-detail",
+    "pluralName": "driver-details",
+    "displayName": "driverDetail",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "driverName": {
+      "type": "string"
+    },
+    "driverLisenceNumber": {
+      "type": "string"
+    },
+    "driver_salaries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::driver-salary.driver-salary",
+      "mappedBy": "driver_detail"
+    },
+    "salary": {
+      "type": "integer"
+    },
+    "hotel_names": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "driver_details"
+    }
+  }
+}

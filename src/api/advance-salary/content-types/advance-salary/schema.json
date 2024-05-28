@@ -22,6 +22,12 @@
     },
     "date": {
       "type": "date"
+    },
+    "hotel_names": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "advance_salaries"
     }
   }
 }

@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "driver_salaries",
+  "info": {
+    "singularName": "driver-salary",
+    "pluralName": "driver-salaries",
+    "displayName": "driverSalary",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "salary": {
+      "type": "integer"
+    },
+    "paidAmount": {
+      "type": "integer"
+    },
+    "driver_detail": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::driver-detail.driver-detail",
+      "inversedBy": "driver_salaries"
+    },
+    "date": {
+      "type": "date"
+    },
+    "hotel_name": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::hotel-name.hotel-name",
+      "inversedBy": "driver_salaries"
+    }
+  }
+}

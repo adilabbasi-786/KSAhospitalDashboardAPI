@@ -811,6 +811,11 @@ export interface ApiAdvanceSalaryAdvanceSalary extends Schema.CollectionType {
       'api::employes-data.employes-data'
     >;
     date: Attribute.Date;
+    hotel_names: Attribute.Relation<
+      'api::advance-salary.advance-salary',
+      'manyToMany',
+      'api::hotel-name.hotel-name'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -976,6 +981,92 @@ export interface ApiDriverDriver extends Schema.CollectionType {
   };
 }
 
+export interface ApiDriverDetailDriverDetail extends Schema.CollectionType {
+  collectionName: 'driver_details';
+  info: {
+    singularName: 'driver-detail';
+    pluralName: 'driver-details';
+    displayName: 'driverDetail';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    driverName: Attribute.String;
+    driverLisenceNumber: Attribute.String;
+    driver_salaries: Attribute.Relation<
+      'api::driver-detail.driver-detail',
+      'oneToMany',
+      'api::driver-salary.driver-salary'
+    >;
+    salary: Attribute.Integer;
+    hotel_names: Attribute.Relation<
+      'api::driver-detail.driver-detail',
+      'manyToMany',
+      'api::hotel-name.hotel-name'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::driver-detail.driver-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::driver-detail.driver-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDriverSalaryDriverSalary extends Schema.CollectionType {
+  collectionName: 'driver_salaries';
+  info: {
+    singularName: 'driver-salary';
+    pluralName: 'driver-salaries';
+    displayName: 'driverSalary';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    salary: Attribute.Integer;
+    paidAmount: Attribute.Integer;
+    driver_detail: Attribute.Relation<
+      'api::driver-salary.driver-salary',
+      'manyToOne',
+      'api::driver-detail.driver-detail'
+    >;
+    date: Attribute.Date;
+    hotel_name: Attribute.Relation<
+      'api::driver-salary.driver-salary',
+      'manyToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::driver-salary.driver-salary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::driver-salary.driver-salary',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
   collectionName: 'employee_data';
   info: {
@@ -1065,6 +1156,21 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
     managerPhoneNumber: Attribute.String;
     kafeelName: Attribute.String;
     KafeelPhoneNumber: Attribute.String;
+    driver_salaries: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToMany',
+      'api::driver-salary.driver-salary'
+    >;
+    advance_salaries: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'manyToMany',
+      'api::advance-salary.advance-salary'
+    >;
+    driver_details: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'manyToMany',
+      'api::driver-detail.driver-detail'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1216,6 +1322,8 @@ declare module '@strapi/types' {
       'api::daily-register.daily-register': ApiDailyRegisterDailyRegister;
       'api::daily-sale.daily-sale': ApiDailySaleDailySale;
       'api::driver.driver': ApiDriverDriver;
+      'api::driver-detail.driver-detail': ApiDriverDetailDriverDetail;
+      'api::driver-salary.driver-salary': ApiDriverSalaryDriverSalary;
       'api::employes-data.employes-data': ApiEmployesDataEmployesData;
       'api::hotel-name.hotel-name': ApiHotelNameHotelName;
       'api::partner.partner': ApiPartnerPartner;

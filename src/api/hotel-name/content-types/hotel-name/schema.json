@@ -76,6 +76,24 @@
     },
     "KafeelPhoneNumber": {
       "type": "string"
+    },
+    "driver_salaries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::driver-salary.driver-salary",
+      "mappedBy": "hotel_name"
+    },
+    "advance_salaries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::advance-salary.advance-salary",
+      "mappedBy": "hotel_names"
+    },
+    "driver_details": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::driver-detail.driver-detail",
+      "mappedBy": "hotel_names"
     }
   }
 }
