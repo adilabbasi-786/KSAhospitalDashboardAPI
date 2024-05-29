@@ -94,6 +94,12 @@
       "relation": "manyToMany",
       "target": "api::driver-detail.driver-detail",
       "mappedBy": "hotel_names"
+    },
+    "notification": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::notification.notification",
+      "mappedBy": "hotel_name"
     }
   }
 }

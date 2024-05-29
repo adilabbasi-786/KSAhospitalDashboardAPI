@@ -19,12 +19,12 @@
     "@strapi/plugin-users-permissions": "4.24.0",
     "@strapi/strapi": "4.24.0",
     "better-sqlite3": "8.6.0",
+    "node-schedule": "^2.1.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
     "styled-components": "5.3.3"
   },
-  "devDependencies": {},
   "engines": {
     "node": "v18.16.1",
     "npm": "9.5.1"

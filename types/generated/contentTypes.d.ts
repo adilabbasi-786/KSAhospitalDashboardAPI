@@ -1171,6 +1171,11 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
       'manyToMany',
       'api::driver-detail.driver-detail'
     >;
+    notification: Attribute.Relation<
+      'api::hotel-name.hotel-name',
+      'oneToOne',
+      'api::notification.notification'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1182,6 +1187,43 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::hotel-name.hotel-name',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNotificationNotification extends Schema.CollectionType {
+  collectionName: 'notifications';
+  info: {
+    singularName: 'notification';
+    pluralName: 'notifications';
+    displayName: 'notification';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    message: Attribute.String;
+    hotel_name: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    read: Attribute.Boolean;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::notification.notification',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::notification.notification',
       'oneToOne',
       'admin::user'
     > &
@@ -1326,6 +1368,7 @@ declare module '@strapi/types' {
       'api::driver-salary.driver-salary': ApiDriverSalaryDriverSalary;
       'api::employes-data.employes-data': ApiEmployesDataEmployesData;
       'api::hotel-name.hotel-name': ApiHotelNameHotelName;
+      'api::notification.notification': ApiNotificationNotification;
       'api::partner.partner': ApiPartnerPartner;
       'api::rent.rent': ApiRentRent;
       'api::salary.salary': ApiSalarySalary;
