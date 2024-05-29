@@ -14,7 +14,7 @@ module.exports = createCoreController(
         const { data, meta } = await super.find(ctx);
         return { data, meta };
       } else if (ctx.state.user.role.name === "manager") {
-        //hotelid
+        // hotelid
         const userId = ctx.state.user.id;
         const hotel = await strapi.entityService.findMany(
           "api::hotel-name.hotel-name",
@@ -41,6 +41,9 @@ module.exports = createCoreController(
     },
     async create(ctx) {
       if (ctx.state.user.role.name === "admin") {
+        if (ctx.request.body.status === "active") {
+          ctx.request.body.lastActiveDate = new Date();
+        }
         const response = await super.create(ctx);
         return response;
       } else {
@@ -55,8 +58,12 @@ module.exports = createCoreController(
         );
 
         const hotelId = hotel[0].id;
-
         ctx.request.body.data.hotel_name = hotelId;
+
+        if (ctx.request.body.status === "active") {
+          ctx.request.body.lastActiveDate = new Date();
+        }
+
         const response = await super.create(ctx);
         return response;
       }
@@ -64,6 +71,9 @@ module.exports = createCoreController(
 
     async update(ctx) {
       if (ctx.state.user.role.name === "admin") {
+        if (ctx.request.body.status === "active") {
+          ctx.request.body.data.lastActiveDate = new Date();
+        }
         const response = await super.update(ctx);
         return response;
       } else if (ctx.state.user.role.name === "manager") {
@@ -94,6 +104,10 @@ module.exports = createCoreController(
           return ctx.unauthorized(
             "You cannot update an employee that does not belong to your hotel"
           );
+        }
+
+        if (ctx.request.body.status === "active") {
+          ctx.request.body.data.lastActiveDate = new Date();
         }
 
         // Proceed with the update

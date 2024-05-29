@@ -78,6 +78,9 @@
     },
     "EmployeePhoneNumber": {
       "type": "string"
+    },
+    "lastActiveDate": {
+      "type": "date"
     }
   }
 }
