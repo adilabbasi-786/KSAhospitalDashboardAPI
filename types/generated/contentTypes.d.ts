@@ -1097,6 +1097,7 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     salary: Attribute.Integer;
     EmployeePhoneNumber: Attribute.String;
     lastActiveDate: Attribute.Date;
+    Employee_healtCard: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
