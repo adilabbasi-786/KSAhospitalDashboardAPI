@@ -892,6 +892,7 @@ export interface ApiDailyRegisterDailyRegister extends Schema.CollectionType {
       'api::hotel-name.hotel-name'
     >;
     date: Attribute.Date;
+    tax: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
