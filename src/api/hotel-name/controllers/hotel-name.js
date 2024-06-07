@@ -93,5 +93,60 @@ module.exports = createCoreController(
         return ctx.badRequest("Failed to create hotel entry");
       }
     },
+    async update(ctx) {
+      try {
+        const { id } = ctx.params;
+        const { data } = ctx.request.body;
+        const parsedData = JSON.parse(data);
+
+        // Update the hotel entry with the provided data
+        const entry = await strapi.entityService.update(
+          "api::hotel-name.hotel-name",
+          id,
+          {
+            data: parsedData,
+          }
+        );
+
+        // Function to handle file upload and link to the hotel entry
+        const handleFileUpload = async (fileKey, fieldName) => {
+          if (ctx.request.files && ctx.request.files[fileKey]) {
+            const uploadedFiles = await strapi.plugins[
+              "upload"
+            ].services.upload.upload({
+              data: { fileInfo: {} },
+              files: ctx.request.files[fileKey],
+            });
+
+            // Link the uploaded file to the hotel entry
+            if (uploadedFiles && uploadedFiles.length > 0) {
+              const updateData = {};
+              updateData[fieldName] = uploadedFiles[0].id;
+
+              await strapi.entityService.update(
+                "api::hotel-name.hotel-name",
+                id,
+                {
+                  data: updateData,
+                }
+              );
+            }
+          }
+        };
+
+        // Handle file uploads
+        await handleFileUpload("files.liscencePicture", "liscencePicture");
+        await handleFileUpload("files.TaxVatPicture", "TaxVatPicture");
+        await handleFileUpload(
+          "files.ComercialCertificate",
+          "ComercialCertificate"
+        );
+
+        return ctx.send({ entry });
+      } catch (error) {
+        strapi.log.error(error);
+        return ctx.badRequest("Failed to update hotel entry");
+      }
+    },
   })
 );
