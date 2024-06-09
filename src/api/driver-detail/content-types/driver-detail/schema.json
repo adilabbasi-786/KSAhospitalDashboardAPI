@@ -32,6 +32,54 @@
       "relation": "manyToMany",
       "target": "api::hotel-name.hotel-name",
       "inversedBy": "driver_details"
+    },
+    "PassportNumber": {
+      "type": "string"
+    },
+    "passportExpiry": {
+      "type": "date"
+    },
+    "iqamaNumber": {
+      "type": "string"
+    },
+    "iqamaExpiry": {
+      "type": "date"
+    },
+    "driverPhoneNumber": {
+      "type": "integer"
+    },
+    "iqamaPicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "passportImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "healthCard": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }

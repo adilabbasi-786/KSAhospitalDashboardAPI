@@ -1007,6 +1007,14 @@ export interface ApiDriverDetailDriverDetail extends Schema.CollectionType {
       'manyToMany',
       'api::hotel-name.hotel-name'
     >;
+    PassportNumber: Attribute.String;
+    passportExpiry: Attribute.Date;
+    iqamaNumber: Attribute.String;
+    iqamaExpiry: Attribute.Date;
+    driverPhoneNumber: Attribute.Integer;
+    iqamaPicture: Attribute.Media;
+    passportImage: Attribute.Media;
+    healthCard: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1098,6 +1106,7 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     EmployeePhoneNumber: Attribute.String;
     lastActiveDate: Attribute.Date;
     Employee_healtCard: Attribute.Media;
+    Designation: Attribute.Enumeration<['manager', 'driver', 'hotel employee']>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

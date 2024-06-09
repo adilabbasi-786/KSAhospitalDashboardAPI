@@ -83,14 +83,23 @@
       "type": "date"
     },
     "Employee_healtCard": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "Designation": {
+      "type": "enumeration",
+      "enum": [
+        "manager",
+        "driver",
+        "hotel employee"
+      ]
     }
   }
 }
