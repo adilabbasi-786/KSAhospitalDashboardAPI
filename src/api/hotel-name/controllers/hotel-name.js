@@ -96,40 +96,24 @@ module.exports = createCoreController(
     async update(ctx) {
       try {
         const { id } = ctx.params;
-        const { data } = ctx.request.body;
-        const parsedData = JSON.parse(data);
+        const { body, files } = ctx.request;
 
-        // Update the hotel entry with the provided data
-        const entry = await strapi.entityService.update(
-          "api::hotel-name.hotel-name",
-          id,
-          {
-            data: parsedData,
-          }
-        );
+        // Directly use body object which is populated by FormData
+        const updatedData = { ...body };
 
         // Function to handle file upload and link to the hotel entry
         const handleFileUpload = async (fileKey, fieldName) => {
-          if (ctx.request.files && ctx.request.files[fileKey]) {
+          if (files && files[fileKey]) {
             const uploadedFiles = await strapi.plugins[
               "upload"
             ].services.upload.upload({
               data: { fileInfo: {} },
-              files: ctx.request.files[fileKey],
+              files: files[fileKey],
             });
 
             // Link the uploaded file to the hotel entry
             if (uploadedFiles && uploadedFiles.length > 0) {
-              const updateData = {};
-              updateData[fieldName] = uploadedFiles[0].id;
-
-              await strapi.entityService.update(
-                "api::hotel-name.hotel-name",
-                id,
-                {
-                  data: updateData,
-                }
-              );
+              updatedData[fieldName] = uploadedFiles[0].id;
             }
           }
         };
@@ -140,6 +124,15 @@ module.exports = createCoreController(
         await handleFileUpload(
           "files.ComercialCertificate",
           "ComercialCertificate"
+        );
+
+        // Update the hotel entry with the provided data
+        const entry = await strapi.entityService.update(
+          "api::hotel-name.hotel-name",
+          id,
+          {
+            data: updatedData,
+          }
         );
 
         return ctx.send({ entry });
