@@ -1015,6 +1015,7 @@ export interface ApiDriverDetailDriverDetail extends Schema.CollectionType {
     iqamaPicture: Attribute.Media;
     passportImage: Attribute.Media;
     healthCard: Attribute.Media;
+    EmployeePicture: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

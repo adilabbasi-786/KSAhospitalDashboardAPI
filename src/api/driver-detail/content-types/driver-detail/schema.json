@@ -80,6 +80,16 @@
         "videos",
         "audios"
       ]
+    },
+    "EmployeePicture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
