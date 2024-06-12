@@ -1108,6 +1108,7 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     lastActiveDate: Attribute.Date;
     Employee_healtCard: Attribute.Media;
     Designation: Attribute.Enumeration<['manager', 'driver', 'hotel employee']>;
+    employeePicture2: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
