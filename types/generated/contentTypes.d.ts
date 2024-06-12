@@ -1092,11 +1092,8 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     EmployeeName: Attribute.String;
     PassportNumber: Attribute.String;
     passportExpiry: Attribute.Date;
-    passportImage: Attribute.Media;
     iqamaNumber: Attribute.String;
-    iqamaPicture: Attribute.Media;
     iqamaExpiry: Attribute.Date;
-    employeePicture: Attribute.Media;
     hotel_name: Attribute.Relation<
       'api::employes-data.employes-data',
       'manyToOne',
@@ -1106,9 +1103,12 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     salary: Attribute.Integer;
     EmployeePhoneNumber: Attribute.String;
     lastActiveDate: Attribute.Date;
-    Employee_healtCard: Attribute.Media;
     Designation: Attribute.Enumeration<['manager', 'driver', 'hotel employee']>;
     employeePicture2: Attribute.Text;
+    iqamaPicture: Attribute.Text;
+    employeePicture: Attribute.Text;
+    passportImage: Attribute.Text;
+    Employee_healtCard: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

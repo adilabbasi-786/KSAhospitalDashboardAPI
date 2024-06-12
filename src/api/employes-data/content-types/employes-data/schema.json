@@ -21,44 +21,11 @@
     "passportExpiry": {
       "type": "date"
     },
-    "passportImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "iqamaNumber": {
       "type": "string"
     },
-    "iqamaPicture": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "iqamaExpiry": {
       "type": "date"
-    },
-    "employeePicture": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
     },
     "hotel_name": {
       "type": "relation",
@@ -82,17 +49,6 @@
     "lastActiveDate": {
       "type": "date"
     },
-    "Employee_healtCard": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
     "Designation": {
       "type": "enumeration",
       "enum": [
@@ -102,6 +58,18 @@
       ]
     },
     "employeePicture2": {
+      "type": "text"
+    },
+    "iqamaPicture": {
+      "type": "text"
+    },
+    "employeePicture": {
+      "type": "text"
+    },
+    "passportImage": {
+      "type": "text"
+    },
+    "Employee_healtCard": {
       "type": "text"
     }
   }
