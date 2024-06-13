@@ -141,5 +141,79 @@ module.exports = createCoreController(
         return ctx.badRequest("Failed to update hotel entry");
       }
     },
+    async updateManager(ctx) {
+      try {
+        const hotelID = ctx.request.body.hotelId;
+        const newEmail = ctx.request.body.managerEmail;
+        const newPassword = ctx.request.body.password;
+
+        //get hotelmanager from hotelID
+        const entry = await strapi.entityService.findOne(
+          "api::hotel-name.hotel-name",
+          hotelID,
+          {
+            fields: ["managerEmail"],
+          }
+        );
+        console.log("entity", entry);
+        const currentManagerEmail = entry.managerEmail;
+        console.log("currentEmail", currentManagerEmail);
+
+        //step1 delete user name from email
+        const currentManagerId = await strapi.entityService.findMany(
+          "plugin::users-permissions.user",
+          {
+            filters: { email: currentManagerEmail },
+            fields: ["id"],
+          }
+        );
+        console.log("cureent", currentManagerId[0].id);
+        await strapi.entityService.delete(
+          "plugin::users-permissions.user",
+          currentManagerId[0].id
+        );
+        // step2 new user create with email and password
+        const roles = await strapi.entityService.findMany(
+          "plugin::users-permissions.role",
+          {
+            filters: { type: "manager" },
+          }
+        );
+        const roleID = roles[0].id;
+
+        const newManager = await strapi.entityService.create(
+          "plugin::users-permissions.user",
+          {
+            data: {
+              email: newEmail,
+              password: newPassword,
+              username: newEmail,
+              confirmed: true,
+              hotel_name: hotelID,
+              role: roleID,
+            },
+          }
+        );
+        console.log("newww", newManager);
+        //step3 update email and password of given hotelID
+
+        await strapi.entityService.update(
+          "api::hotel-name.hotel-name",
+          hotelID,
+          {
+            data: {
+              managerEmail: newEmail,
+              managerPassword: newPassword,
+            },
+          }
+        );
+
+        return {
+          status: "ok",
+        };
+      } catch (error) {
+        return { status: "error" };
+      }
+    },
   })
 );
