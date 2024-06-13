@@ -13,7 +13,7 @@ module.exports = createCoreController(
       try {
         // Parse the JSON data
         const { data } = ctx.request.body;
-        const parsedData = JSON.parse(data);
+        const parsedData = data;
         const { manager } = parsedData;
 
         if (!manager) {
@@ -191,6 +191,7 @@ module.exports = createCoreController(
               confirmed: true,
               hotel_name: hotelID,
               role: roleID,
+              provider: "local",
             },
           }
         );

@@ -1190,9 +1190,9 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
       'oneToOne',
       'api::notification.notification'
     >;
-    liscencePicture: Attribute.Media;
-    ComercialCertificate: Attribute.Media;
-    TaxVatPicture: Attribute.Media;
+    liscencePicture: Attribute.Text;
+    ComercialCertificate: Attribute.Text;
+    TaxVatPicture: Attribute.Text;
     TaxVatNumber: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

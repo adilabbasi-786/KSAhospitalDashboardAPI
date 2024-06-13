@@ -102,34 +102,13 @@
       "mappedBy": "hotel_name"
     },
     "liscencePicture": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      "type": "text"
     },
     "ComercialCertificate": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      "type": "text"
     },
     "TaxVatPicture": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      "type": "text"
     },
     "TaxVatNumber": {
       "type": "string"
