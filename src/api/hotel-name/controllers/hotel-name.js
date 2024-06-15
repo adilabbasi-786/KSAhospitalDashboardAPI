@@ -216,5 +216,30 @@ module.exports = createCoreController(
         return { status: "error" };
       }
     },
+    async updateAdmin(ctx) {
+      //ctx.state.user.id admin id
+      // entity service update
+      //id, password
+      // return done
+      try {
+        const newPassword = ctx.request.body.newPassword;
+
+        const userId = ctx.state.user.id;
+        await strapi.entityService.update(
+          "plugin::users-permissions.user",
+          userId,
+          {
+            data: {
+              password: newPassword,
+            },
+          }
+        );
+        return {
+          status: "ok",
+        };
+      } catch (error) {
+        return { status: "error" };
+      }
+    },
   })
 );
