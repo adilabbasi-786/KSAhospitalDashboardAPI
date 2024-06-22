@@ -101,17 +101,38 @@
       "target": "api::notification.notification",
       "mappedBy": "hotel_name"
     },
-    "liscencePicture": {
-      "type": "text"
-    },
-    "ComercialCertificate": {
-      "type": "text"
-    },
-    "TaxVatPicture": {
-      "type": "text"
-    },
     "TaxVatNumber": {
       "type": "string"
+    },
+    "TaxVatPicture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "liscencePicture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "ComercialCertificate": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

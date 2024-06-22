@@ -13,7 +13,7 @@ module.exports = createCoreController(
       try {
         // Parse the JSON data
         const { data } = ctx.request.body;
-        const parsedData = data;
+        const parsedData = JSON.parse(data);
         const { manager } = parsedData;
 
         if (!manager) {
