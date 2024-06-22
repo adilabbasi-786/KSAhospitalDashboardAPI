@@ -57,20 +57,45 @@
         "hotel employee"
       ]
     },
-    "employeePicture2": {
-      "type": "text"
+    "employeePicture": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "iqamaPicture": {
-      "type": "text"
-    },
-    "employeePicture": {
-      "type": "text"
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "passportImage": {
-      "type": "text"
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     },
     "Employee_healtCard": {
-      "type": "text"
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

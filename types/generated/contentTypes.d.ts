@@ -1104,11 +1104,10 @@ export interface ApiEmployesDataEmployesData extends Schema.CollectionType {
     EmployeePhoneNumber: Attribute.String;
     lastActiveDate: Attribute.Date;
     Designation: Attribute.Enumeration<['manager', 'driver', 'hotel employee']>;
-    employeePicture2: Attribute.Text;
-    iqamaPicture: Attribute.Text;
-    employeePicture: Attribute.Text;
-    passportImage: Attribute.Text;
-    Employee_healtCard: Attribute.Text;
+    employeePicture: Attribute.Media;
+    iqamaPicture: Attribute.Media;
+    passportImage: Attribute.Media;
+    Employee_healtCard: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
