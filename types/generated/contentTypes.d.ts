@@ -1012,10 +1012,11 @@ export interface ApiDriverDetailDriverDetail extends Schema.CollectionType {
     iqamaNumber: Attribute.String;
     iqamaExpiry: Attribute.Date;
     driverPhoneNumber: Attribute.Integer;
-    iqamaPicture: Attribute.Text;
-    passportImage: Attribute.Text;
-    healthCard: Attribute.Text;
-    EmployeePicture: Attribute.Text;
+    iqamaPicture: Attribute.Media;
+    passportImage: Attribute.Media;
+    healthCard: Attribute.Media;
+    EmployeePicture: Attribute.Media;
+    liscenceExpiryDate: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
