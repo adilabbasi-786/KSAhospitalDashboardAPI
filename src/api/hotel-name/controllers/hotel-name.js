@@ -262,7 +262,7 @@ module.exports = createCoreController(
         WHERE daily_registers_hotel_name_links.hotel_name_id = ${hotel_id}
            AND daily_registers.date >= '${start_date}' AND daily_registers.date < '${end_date}';`
       );
-      const total_expanse = expanse_query[0]?.total_sum || 0;
+      const total_expanse = expanse_query.rows[0]?.total_sum || 0;
 
       const sales_query = await strapi.db.connection.raw(
         `SELECT sum(sale) as total_sale from daily_sales_hotel_name_links
@@ -271,7 +271,7 @@ module.exports = createCoreController(
         WHERE daily_sales_hotel_name_links.hotel_name_id =${hotel_id}
          AND daily_sales.date >= '${start_date}' AND  daily_sales.date < '${end_date}';`
       );
-      const total_sales = sales_query[0]?.total_sale || 0;
+      const total_sales = sales_query.rows[0]?.total_sale || 0;
 
       const advance_query = await strapi.db.connection.raw(
         `SELECT sum(subquery.amount) as total_advance_salalry
@@ -285,7 +285,7 @@ module.exports = createCoreController(
         INNER join employee_data_hotel_name_links
         on employee_data_hotel_name_links.employes_data_id=salaries_employees_datum_links.employes_data_id where hotel_name_id=${hotel_id};`
       );
-      const total_advance = advance_query[0]?.total_advance_salalry || 0;
+      const total_advance = advance_query.rows[0]?.total_advance_salalry || 0;
 
       const monthly_salary_query = await strapi.db.connection.raw(
         `SELECT sum(subquery.amount) as total_monthy_salalry
@@ -299,7 +299,8 @@ module.exports = createCoreController(
         INNER join employee_data_hotel_name_links
         on employee_data_hotel_name_links.employes_data_id=salaries_employees_datum_links.employes_data_id where hotel_name_id=${hotel_id};`
       );
-      const total_monthly = monthly_salary_query[0]?.total_monthy_salalry || 0;
+      const total_monthly =
+        monthly_salary_query.rows[0]?.total_monthy_salalry || 0;
       return {
         total_expanse,
         total_sales,
