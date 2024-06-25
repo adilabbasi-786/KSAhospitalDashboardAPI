@@ -21,8 +21,7 @@
     "hotel_name": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::hotel-name.hotel-name",
-      "mappedBy": "daily_sale"
+      "target": "api::hotel-name.hotel-name"
     },
     "cashSale": {
       "type": "integer"
