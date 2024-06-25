@@ -241,5 +241,71 @@ module.exports = createCoreController(
         return { status: "error" };
       }
     },
+    async getProfit(ctx) {
+      const hotel_id = ctx.request.body.hotel_id;
+      const year = ctx.request.body.year;
+      const month = ctx.request.body.month;
+      const start_date = `${year}-${month}-01`;
+      const givenDate = new Date(start_date);
+      const lastDateOfMonth = new Date(
+        givenDate.getFullYear(),
+        givenDate.getMonth() + 1,
+        1
+      );
+      const end_date = lastDateOfMonth.toISOString().split("T")[0];
+      console.log({ start_date, end_date });
+      const expanse_query = await strapi.db.connection.raw(
+        `SELECT SUM(quantity * price ) AS total_sum
+        FROM daily_registers_hotel_name_links
+        INNER JOIN daily_registers
+        ON daily_registers_hotel_name_links.daily_register_id = daily_registers.id
+        WHERE daily_registers_hotel_name_links.hotel_name_id = ${hotel_id}
+           AND daily_registers.date BETWEEN '${start_date}' AND '${end_date}';`
+      );
+      const total_expanse = expanse_query[0]?.total_sum || 0;
+
+      const sales_query = await strapi.db.connection.raw(
+        `SELECT sum(sale) as total_sale from daily_sales_hotel_name_links
+        INNER JOIN daily_sales
+        ON daily_sales_hotel_name_links.daily_sale_id = daily_sales.id
+        WHERE daily_sales_hotel_name_links.hotel_name_id =${hotel_id}
+         AND daily_sales.date BETWEEN '${start_date}' AND '${end_date}';`
+      );
+      const total_sales = sales_query[0]?.total_sale || 0;
+
+      const advance_query = await strapi.db.connection.raw(
+        `SELECT sum(subquery.amount) as total_advance_salalry
+        FROM (
+            SELECT *
+            FROM salaries
+            WHERE type='advance' AND  date BETWEEN '${start_date}' AND '${end_date}'
+        ) AS subquery
+        INNER JOIN salaries_employees_datum_links
+        on salaries_employees_datum_links.salary_id=subquery.id
+        INNER join employee_data_hotel_name_links
+        on employee_data_hotel_name_links.employes_data_id=salaries_employees_datum_links.employes_data_id where hotel_name_id=${hotel_id};`
+      );
+      const total_advance = advance_query[0]?.total_advance_salalry || 0;
+
+      const monthly_salary_query = await strapi.db.connection.raw(
+        `SELECT sum(subquery.amount) as total_monthy_salalry
+        FROM (
+            SELECT *
+            FROM salaries
+            WHERE type='monthly salary' AND month=6 AND  date BETWEEN '${start_date}' AND '${end_date}'
+        ) AS subquery
+        INNER JOIN salaries_employees_datum_links
+        on salaries_employees_datum_links.salary_id=subquery.id
+        INNER join employee_data_hotel_name_links
+        on employee_data_hotel_name_links.employes_data_id=salaries_employees_datum_links.employes_data_id where hotel_name_id=${hotel_id};`
+      );
+      const total_monthly = monthly_salary_query[0]?.total_monthy_salalry || 0;
+      return {
+        total_expanse,
+        total_sales,
+        total_advance,
+        total_monthly,
+      };
+    },
   })
 );

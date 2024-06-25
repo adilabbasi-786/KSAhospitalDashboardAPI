@@ -5,5 +5,10 @@ module.exports = {
       path: "/updateAdmin",
       handler: "hotel-name.updateAdmin",
     },
+    {
+      method: "POST",
+      path: "/getprofit",
+      handler: "hotel-name.getProfit",
+    },
   ],
 };

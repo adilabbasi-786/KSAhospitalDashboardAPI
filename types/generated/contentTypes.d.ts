@@ -1147,11 +1147,6 @@ export interface ApiHotelNameHotelName extends Schema.CollectionType {
     managerPassword: Attribute.String;
     hotelRent: Attribute.Integer;
     kafalat: Attribute.Integer;
-    daily_sale: Attribute.Relation<
-      'api::hotel-name.hotel-name',
-      'oneToOne',
-      'api::daily-sale.daily-sale'
-    >;
     partners: Attribute.Relation<
       'api::hotel-name.hotel-name',
       'manyToMany',
