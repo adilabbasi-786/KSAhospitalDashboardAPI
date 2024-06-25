@@ -260,7 +260,7 @@ module.exports = createCoreController(
         INNER JOIN daily_registers
         ON daily_registers_hotel_name_links.daily_register_id = daily_registers.id
         WHERE daily_registers_hotel_name_links.hotel_name_id = ${hotel_id}
-           AND daily_registers.date BETWEEN '${start_date}' AND '${end_date}';`
+           AND daily_registers.date >= '${start_date}' AND daily_registers.date < '${end_date}';`
       );
       const total_expanse = expanse_query[0]?.total_sum || 0;
 
@@ -269,7 +269,7 @@ module.exports = createCoreController(
         INNER JOIN daily_sales
         ON daily_sales_hotel_name_links.daily_sale_id = daily_sales.id
         WHERE daily_sales_hotel_name_links.hotel_name_id =${hotel_id}
-         AND daily_sales.date BETWEEN '${start_date}' AND '${end_date}';`
+         AND daily_sales.date >= '${start_date}' AND  daily_sales.date < '${end_date}';`
       );
       const total_sales = sales_query[0]?.total_sale || 0;
 
@@ -278,7 +278,7 @@ module.exports = createCoreController(
         FROM (
             SELECT *
             FROM salaries
-            WHERE type='advance' AND  date BETWEEN '${start_date}' AND '${end_date}'
+            WHERE type='advance' AND  date >= '${start_date}' AND date < '${end_date}'
         ) AS subquery
         INNER JOIN salaries_employees_datum_links
         on salaries_employees_datum_links.salary_id=subquery.id
@@ -292,7 +292,7 @@ module.exports = createCoreController(
         FROM (
             SELECT *
             FROM salaries
-            WHERE type='monthly salary' AND month=6 AND  date BETWEEN '${start_date}' AND '${end_date}'
+            WHERE type='monthly salary' AND month=6 AND  date >= '${start_date}' AND date < '${end_date}'
         ) AS subquery
         INNER JOIN salaries_employees_datum_links
         on salaries_employees_datum_links.salary_id=subquery.id
