@@ -885,7 +885,7 @@ export interface ApiDailyRegisterDailyRegister extends Schema.CollectionType {
     itemName: Attribute.String;
     category: Attribute.Enumeration<['kitchen', 'others']>;
     quantity: Attribute.Decimal;
-    price: Attribute.Integer;
+    price: Attribute.Decimal;
     hotel_name: Attribute.Relation<
       'api::daily-register.daily-register',
       'oneToOne',
