@@ -1289,6 +1289,7 @@ export interface ApiRentRent extends Schema.CollectionType {
     singularName: 'rent';
     pluralName: 'rents';
     displayName: 'rent';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1296,12 +1297,12 @@ export interface ApiRentRent extends Schema.CollectionType {
   attributes: {
     hotelRent: Attribute.Integer;
     kafalat: Attribute.Integer;
-    month: Attribute.Integer;
     hotel_name: Attribute.Relation<
       'api::rent.rent',
       'oneToOne',
       'api::hotel-name.hotel-name'
     >;
+    month: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

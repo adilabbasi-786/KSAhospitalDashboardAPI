@@ -4,7 +4,8 @@
   "info": {
     "singularName": "rent",
     "pluralName": "rents",
-    "displayName": "rent"
+    "displayName": "rent",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,13 +18,13 @@
     "kafalat": {
       "type": "integer"
     },
-    "month": {
-      "type": "integer"
-    },
     "hotel_name": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::hotel-name.hotel-name"
+    },
+    "month": {
+      "type": "string"
     }
   }
 }
