@@ -1332,11 +1332,11 @@ export interface ApiSalarySalary extends Schema.CollectionType {
       'api::employes-data.employes-data'
     >;
     date: Attribute.Date;
-    month: Attribute.Integer;
     type: Attribute.Enumeration<
       ['monthly salary', 'advance', 'fine', 'deduction']
     >;
     amount: Attribute.Integer;
+    month: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

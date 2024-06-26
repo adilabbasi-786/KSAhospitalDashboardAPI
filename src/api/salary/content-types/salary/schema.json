@@ -23,9 +23,6 @@
     "date": {
       "type": "date"
     },
-    "month": {
-      "type": "integer"
-    },
     "type": {
       "type": "enumeration",
       "enum": [
@@ -37,6 +34,9 @@
     },
     "amount": {
       "type": "integer"
+    },
+    "month": {
+      "type": "string"
     }
   }
 }
