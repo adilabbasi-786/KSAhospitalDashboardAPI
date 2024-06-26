@@ -292,7 +292,7 @@ module.exports = createCoreController(
         FROM (
             SELECT *
             FROM salaries
-            WHERE type='monthly salary' AND month=6 AND  date >= '${start_date}' AND date < '${end_date}'
+            WHERE type='monthly salary' AND   date >= '${start_date}' AND date < '${end_date}'
         ) AS subquery
         INNER JOIN salaries_employees_datum_links
         on salaries_employees_datum_links.salary_id=subquery.id
