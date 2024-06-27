@@ -1264,7 +1264,7 @@ export interface ApiPartnerPartner extends Schema.CollectionType {
       'api::hotel-name.hotel-name'
     >;
     profit_amount: Attribute.BigInteger;
-    month: Attribute.Integer;
+    month: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

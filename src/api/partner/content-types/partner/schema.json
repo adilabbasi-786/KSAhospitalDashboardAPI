@@ -28,7 +28,7 @@
       "type": "biginteger"
     },
     "month": {
-      "type": "integer"
+      "type": "string"
     }
   }
 }
