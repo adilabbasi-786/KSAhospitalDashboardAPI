@@ -893,6 +893,12 @@ export interface ApiDailyRegisterDailyRegister extends Schema.CollectionType {
     >;
     date: Attribute.Date;
     tax: Attribute.String;
+    daily_total_expanses: Attribute.Relation<
+      'api::daily-register.daily-register',
+      'manyToMany',
+      'api::daily-total-expanse.daily-total-expanse'
+    >;
+    DailyExpanse: Attribute.Integer;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -943,6 +949,49 @@ export interface ApiDailySaleDailySale extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::daily-sale.daily-sale',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDailyTotalExpanseDailyTotalExpanse
+  extends Schema.CollectionType {
+  collectionName: 'daily_total_expanses';
+  info: {
+    singularName: 'daily-total-expanse';
+    pluralName: 'daily-total-expanses';
+    displayName: 'DailyTotalExpanse';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    totalexpanse: Attribute.Integer;
+    date: Attribute.Date;
+    daily_registers: Attribute.Relation<
+      'api::daily-total-expanse.daily-total-expanse',
+      'manyToMany',
+      'api::daily-register.daily-register'
+    >;
+    hotel_name: Attribute.Relation<
+      'api::daily-total-expanse.daily-total-expanse',
+      'oneToOne',
+      'api::hotel-name.hotel-name'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::daily-total-expanse.daily-total-expanse',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::daily-total-expanse.daily-total-expanse',
       'oneToOne',
       'admin::user'
     > &
@@ -1377,6 +1426,7 @@ declare module '@strapi/types' {
       'api::charity.charity': ApiCharityCharity;
       'api::daily-register.daily-register': ApiDailyRegisterDailyRegister;
       'api::daily-sale.daily-sale': ApiDailySaleDailySale;
+      'api::daily-total-expanse.daily-total-expanse': ApiDailyTotalExpanseDailyTotalExpanse;
       'api::driver.driver': ApiDriverDriver;
       'api::driver-detail.driver-detail': ApiDriverDetailDriverDetail;
       'api::driver-salary.driver-salary': ApiDriverSalaryDriverSalary;

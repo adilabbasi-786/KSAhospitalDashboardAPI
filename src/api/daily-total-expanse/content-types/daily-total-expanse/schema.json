@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "daily_total_expanses",
+  "info": {
+    "singularName": "daily-total-expanse",
+    "pluralName": "daily-total-expanses",
+    "displayName": "DailyTotalExpanse",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "totalexpanse": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "date"
+    },
+    "daily_registers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::daily-register.daily-register",
+      "inversedBy": "daily_total_expanses"
+    },
+    "hotel_name": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::hotel-name.hotel-name"
+    }
+  }
+}

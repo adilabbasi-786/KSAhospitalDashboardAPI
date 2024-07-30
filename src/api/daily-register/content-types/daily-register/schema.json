@@ -38,6 +38,15 @@
     },
     "tax": {
       "type": "string"
+    },
+    "daily_total_expanses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::daily-total-expanse.daily-total-expanse",
+      "mappedBy": "daily_registers"
+    },
+    "DailyExpanse": {
+      "type": "integer"
     }
   }
 }
